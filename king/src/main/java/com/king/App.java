@@ -12,7 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages={"com.ma.springboot.mapper"})
+@MapperScan(basePackages={"com.king.mapper"})
 public class App {
 	
 	public static void main(String[] args) {
