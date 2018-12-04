@@ -8,6 +8,7 @@
 package com.king.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,10 @@ public class UserController {
 	}
 	
 	@RequestMapping("/findByName")
-	public Map<String, User> findByName(String name){
-		Map<String, User> map = new HashMap<String, User>();
-		User user = userService.findByName(name);
-		map.put(user.getName(), user);
+	public Map<String, List<User>> findByName(String name){
+		Map<String, List<User>> map = new HashMap<>();
+		List<User> users = userService.findByName(name);
+		map.put("users", users);
 		return map;
 	}
 
