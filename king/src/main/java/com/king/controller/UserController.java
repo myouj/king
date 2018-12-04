@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageInfo;
 import com.king.entity.User;
 import com.king.service.UserService;
 
@@ -31,11 +32,10 @@ public class UserController {
 	}
 	
 	@RequestMapping("/findByName")
-	public Map<String, List<User>> findByName(String name){
-		Map<String, List<User>> map = new HashMap<>();
-		List<User> users = userService.findByName(name);
-		map.put("users", users);
-		return map;
+	public PageInfo<User> findByName(String name){
+		PageInfo<User> users = userService.findByName(name);
+		
+		return users;
 	}
 
 }

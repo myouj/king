@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.king.entity.User;
 import com.king.mapper.UserMapper;
 import com.king.service.UserService;
@@ -34,9 +36,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> findByName(String name) {
-		List<User> user = mapper.findByName(name);
-		return user;
+	public PageInfo<User> findByName(String name) {
+		PageHelper.startPage(1, 5);
+		List<User> users = mapper.findByName(name);
+		PageInfo<User> pageInfo = new PageInfo<>(users);
+		return pageInfo;
 	}
 	
 	

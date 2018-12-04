@@ -9,6 +9,7 @@ package com.king.service;
 
 import java.util.List;
 
+import com.github.pagehelper.PageInfo;
 import com.king.entity.User;
 
 public interface UserService {
@@ -16,6 +17,6 @@ public interface UserService {
 	
 	public int insertUser(String name, Integer age);
 	
-	public List<User> findByName(String name);
+	public PageInfo<User> findByName(String name);
 
 }
