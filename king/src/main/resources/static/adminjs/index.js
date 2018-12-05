@@ -14,7 +14,8 @@ var _menus={
 					[
 						{"icon":"icon-sys","menuid":"101","menuname":"监测数据查询","url":"listEnv.html"},
 						{"icon":"icon-sys","menuid":"102","menuname":"考勤管理","url":""},
-						{"icon":"icon-sys","menuid":"103","menuname":"资产管理","url":""}
+						{"icon":"icon-sys","menuid":"103","menuname":"设备管理","url":"listAsset.html"},
+						
 					]
 			 	},
 			 	{

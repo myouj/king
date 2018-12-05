@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css" />
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="adminjs/form.js"></script>
+<script>
+$(function() {
+	$('#tt').datagrid({    
+	    url:'getAsset', 
+	    fit:false,
+	    columns:[[    
+	        {field:'id', title:'编号', width:300, align:'left'},    
+	        {field:'name', title:'设备名称', width:100, align:'left'},
+	        {field:'number', title:'设备编号', width:100, align:'left'},
+	        {field:'rfid', title:'rfid', width:100, align:'left'},
+	        {field:'status', title:'状态', width:100, align:'left', formatter: function(value, row, index) {
+	        	return value ? "可用".fontcolor("green") : "不可用".fontcolor("red") ;
+	        }}
+	    ]],
+	    pagination: true, //是否显示分页栏，true就显示，默认为false，不显示
+	    pageSize: '5', //默认每页显示5条记录
+	    pageList: [5, 10, 15, 20] //让用户选择每页显示的记录数
+	});
+});
+
+</script>
+</head>
+<body>
+	<table id="tt"></table>
+</body>
+</html>
