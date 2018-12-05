@@ -1,6 +1,8 @@
 package com.king.utils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.github.pagehelper.PageInfo;
 
@@ -11,8 +13,16 @@ import com.github.pagehelper.PageInfo;
 */
 public final class ResultTool {
 	
+	@SuppressWarnings("rawtypes")
 	public static ResultInfo setResult(PageInfo pageInfo, List list) {
 		return new ResultInfo(pageInfo.getStartRow(), pageInfo.getPageSize(), (int)pageInfo.getTotal(), list);
+	}
+	
+	public static Map<String, Object> ajaxResult(boolean status, String message) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("status", status);
+		map.put("message", message);
+		return map;
 	}
 
 }
