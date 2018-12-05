@@ -20,8 +20,9 @@ var _menus={
 			 	{
 			 		"icon":"icon-sys","menuid":"200","menuname":"日志管理","menus":
 					[
-						{"icon":"icon-sys","menuid":"201","menuname":"灯光控制","url":""},
-						{"icon":"icon-sys","menuid":"202","menuname":"空调控制","url":""}
+						{"icon":"icon-sys","menuid":"201","menuname":"灯光控制","url":"listLightLog.html"},
+						{"icon":"icon-sys","menuid":"202","menuname":"空调控制","url":"listARLog.html"},
+						{"icon":"icon-sys","menuid":"202","menuname":"设备控制","url":"listAssertLog.html"}
 					]
 			 	}
 			 	

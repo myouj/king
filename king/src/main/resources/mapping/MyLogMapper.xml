@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.king.mapper.MyLogMapper">
+	
+	<!-- List<LightLog> selectAllLightLog(); -->
+	<select id="selectAllLightLog" resultType="com.king.entity.LightLog">
+		select * from light_log
+	</select>
+
+	<!-- List<LightLog> selectAllArLog(); -->
+	<select id="selectAllArLog" resultType="com.king.entity.ArLog">
+		select * from air_conditioner_log
+	</select>
+	
+	<!-- List<LightLog> selectAllAssertLog(); -->
+	<select id="selectAllAssertLog" resultType="com.king.entity.AssertLog">
+		select * from asset_log
+	</select>
+
+</mapper>
