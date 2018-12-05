@@ -1,5 +1,6 @@
 package com.king.service;
 
+import com.king.entity.Asset;
 import com.king.utils.ResultInfo;
 
 /** 
@@ -10,5 +11,13 @@ import com.king.utils.ResultInfo;
 public interface IAssetService {
 	
 	ResultInfo selectAllAsset(int page, int rows);
+	
+	void insertAsset(Asset asset);
+	
+	Asset getAsset(String id);
+	
+	void updateAsset(Asset asset);
+	
+	void deleteAsset(String id);
 
 }

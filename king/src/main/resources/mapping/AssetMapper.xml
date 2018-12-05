@@ -6,5 +6,28 @@
 	<select id="selectAllAsset" resultType="com.king.entity.Asset">
 		select * from asset
 	</select>
+	
+	<!-- Asset getAsset(Asset asset); -->
+	<select id="getAsset" resultType="com.king.entity.Asset">
+		select * from asset where id=#{id}
+	</select>
+	
+	<!-- void insertAsset(Asset asset); -->
+	<insert id="insertAsset">
+		insert into asset values(#{id}, #{name}, #{number}, #{rfid}, #{status})
+	</insert>
+	
+	<!-- void updateAsset(Asset asset); -->
+	<update id="updateAsset">
+		update asset 
+		set name=#{name}, number=#{number}, rfid=#{rfid}, status=#{status} 
+		where id=#{id}
+	</update>
+	
+	<!-- void deleteAsset(Asset asset); -->
+	<delete id="deleteAsset">
+		delete from asset where id=#{id}
+	</delete>
+
 
 </mapper>

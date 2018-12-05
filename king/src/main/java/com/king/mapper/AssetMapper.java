@@ -12,5 +12,13 @@ import com.king.entity.Asset;
 public interface AssetMapper {
 	
 	List<Asset> selectAllAsset();
+	
+	void insertAsset(Asset asset);
+	
+	Asset getAsset(Asset asset);
+	
+	void updateAsset(Asset asset);
+	
+	void deleteAsset(Asset asset);
 
 }

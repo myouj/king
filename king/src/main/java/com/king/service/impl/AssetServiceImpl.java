@@ -10,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 import com.king.entity.Asset;
 import com.king.mapper.AssetMapper;
 import com.king.service.IAssetService;
+import com.king.utils.DataTool;
 import com.king.utils.ResultInfo;
 import com.king.utils.ResultTool;
 
@@ -30,6 +31,35 @@ public class AssetServiceImpl implements IAssetService {
 		List<Asset> assets = assetMapper.selectAllAsset();
 		PageInfo<Asset> pageInfo = new PageInfo<>(assets);
 		return ResultTool.setResult(pageInfo, assets);
+	}
+
+	@Override
+	public void insertAsset(Asset asset) {
+		asset.setId(DataTool.getUuid());
+		assetMapper.insertAsset(asset);
+		
+	}
+
+	@Override
+	public Asset getAsset(String id) {
+		Asset asset = new Asset();
+		asset.setId(id);
+		return assetMapper.getAsset(asset);
+		
+	}
+
+	@Override
+	public void updateAsset(Asset asset) {
+		assetMapper.updateAsset(asset);
+		
+	}
+
+	@Override
+	public void deleteAsset(String id) {
+		Asset asset = new Asset();
+		asset.setId(id);
+		assetMapper.deleteAsset(asset);
+		
 	}
 
 }
