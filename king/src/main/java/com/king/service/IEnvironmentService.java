@@ -1,6 +1,6 @@
 package com.king.service;
 
-import com.king.utils.ResultEnvironmentInfo;
+import com.king.utils.ResultInfo;
 
 /** 
 * @author M_youj E-mail: 18565544225@163.com
@@ -9,6 +9,6 @@ import com.king.utils.ResultEnvironmentInfo;
 */
 public interface IEnvironmentService {
 	
-	ResultEnvironmentInfo selectAllEnvironment(int page, int rows);
+	ResultInfo selectAllEnvironment(int page, int rows);
 
 }

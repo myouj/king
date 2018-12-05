@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.king.service.IEnvironmentService;
-import com.king.utils.ResultEnvironmentInfo;
+import com.king.utils.ResultInfo;
 
 /** 
 * @author M_youj E-mail: 18565544225@163.com
@@ -19,7 +19,7 @@ public class EnvironmentController {
 	private IEnvironmentService environmentService;
 	
 	@PostMapping(value="/selectAllEnvironment", produces="application/json;charset=utf-8")
-	public ResultEnvironmentInfo selectAllEnvironment(int page, int rows){
+	public ResultInfo selectAllEnvironment(int page, int rows){
 		return environmentService.selectAllEnvironment(page, rows);
 	}
 

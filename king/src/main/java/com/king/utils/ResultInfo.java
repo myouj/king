@@ -6,7 +6,7 @@ import java.util.List;
  * @author M_youj E-mail: 18565544225@163.com
  * @version 创建时间：2018年12月5日 上午11:23:46 Describe:
  */
-public class ResultEnvironmentInfo {
+public class ResultInfo {
 	private int start; // 从第几条开始查询
 	private int pageSize; // 每页显示的记录数
 	private int total; // 总记录数
@@ -14,7 +14,7 @@ public class ResultEnvironmentInfo {
 	
 	
 
-	public ResultEnvironmentInfo(int start, int pageSize, int total, List rows) {
+	public ResultInfo(int start, int pageSize, int total, List rows) {
 		super();
 		this.start = start;
 		this.pageSize = pageSize;
