@@ -1,12 +1,11 @@
 package com.king.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
-import com.king.entity.Environment;
 import com.king.service.IEnvironmentService;
+import com.king.utils.ResultEnvironmentInfo;
 
 /** 
 * @author M_youj E-mail: 18565544225@163.com
@@ -19,8 +18,8 @@ public class EnvironmentController {
 	@Autowired
 	private IEnvironmentService environmentService;
 	
-	@GetMapping("/selectAllEnvironment")
-	public PageInfo<Environment> selectAllEnvironment(int page, int rows){
+	@PostMapping(value="/selectAllEnvironment", produces="application/json;charset=utf-8")
+	public ResultEnvironmentInfo selectAllEnvironment(int page, int rows){
 		return environmentService.selectAllEnvironment(page, rows);
 	}
 

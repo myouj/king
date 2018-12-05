@@ -1,7 +1,6 @@
 package com.king.service;
 
-import com.github.pagehelper.PageInfo;
-import com.king.entity.Environment;
+import com.king.utils.ResultEnvironmentInfo;
 
 /** 
 * @author M_youj E-mail: 18565544225@163.com
@@ -10,6 +9,6 @@ import com.king.entity.Environment;
 */
 public interface IEnvironmentService {
 	
-	PageInfo<Environment> selectAllEnvironment(int page, int rows);
+	ResultEnvironmentInfo selectAllEnvironment(int page, int rows);
 
 }

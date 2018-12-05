@@ -10,6 +10,8 @@ import com.github.pagehelper.PageInfo;
 import com.king.entity.Environment;
 import com.king.mapper.EnvironmentMapper;
 import com.king.service.IEnvironmentService;
+import com.king.utils.ResultEnvironmentInfo;
+import com.king.utils.ResultEnvironmentTool;
 
 /** 
 * @author M_youj E-mail: 18565544225@163.com
@@ -23,11 +25,11 @@ public class EnvironmentServiceImple implements IEnvironmentService {
 	private EnvironmentMapper environmentMapper;
 
 	@Override
-	public PageInfo<Environment> selectAllEnvironment(int page, int rows) {
+	public ResultEnvironmentInfo selectAllEnvironment(int page, int rows) {
 		PageHelper.startPage(page, rows);
 		List<Environment> environments = environmentMapper.selectAllEnvironment();
 		PageInfo<Environment> pageInfo = new PageInfo<>(environments);
-		return pageInfo;
+		return ResultEnvironmentTool.setResult(pageInfo, environments);
 	}
 
 }
