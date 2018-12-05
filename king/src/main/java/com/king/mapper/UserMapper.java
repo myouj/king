@@ -15,6 +15,6 @@ public interface UserMapper {
 	
 	User getUser(@Param("name")String name,@Param("pass") String pass);
 	
-	
+	void updateUser(User user);
 	
 }

@@ -6,5 +6,10 @@
 	<select id="getUser" resultType="com.king.entity.User">
 		SELECT * FROM tb_user u WHERE u.name=#{name} AND u.pass=#{pass}
 	</select>
+	
+	<!-- void updateUser(User user); -->
+	<update id="updateUser">
+		update tb_user u set u.pass=#{pass} where u.name=#{name} 
+	</update>
 
 </mapper>

@@ -58,5 +58,15 @@ public class UserController {
 		session.invalidate();
 		return ResultTool.ajaxResult(true, "");
 	}
+	
+	@PostMapping("updatePassword")
+	public String updatePassword(String newPassword, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		user.setPass(newPassword);
+		userService.updateUser(user);
+		
+		return user.getPass();	
+		
+	}
 
 }
