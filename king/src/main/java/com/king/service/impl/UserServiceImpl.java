@@ -24,19 +24,14 @@ public class UserServiceImpl implements UserService {
 	private UserMapper mapper;
 
 	@Override
-	@Transactional
-	public int insertUser(String name, Integer age) {
-		int result = mapper.insert(name, age);
-		return result;
+	public User getUser(String name, String password) {
+		User user = mapper.getUser(name, password);
+		System.out.println(user);
+				
+		return user;
 	}
 
-	@Override
-	public PageInfo<User> findByName(String name) {
-		PageHelper.startPage(1, 5);
-		List<User> users = mapper.findByName(name);
-		PageInfo<User> pageInfo = new PageInfo<>(users);
-		return pageInfo;
-	}
+	
 	
 	
 

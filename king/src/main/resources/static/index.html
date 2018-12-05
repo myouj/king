@@ -11,7 +11,7 @@
 	<script type="text/javascript" src='adminjs/index.js'> </script>
 	<script>
 		$(function() {
-			$.post('sys/getName.do', function(rt) {
+			$.post('getName', function(rt) {
 				if (rt.status) {
 					$("#user").html(rt.message); //把登录名设置到span标签体中
 				} else {
@@ -22,7 +22,7 @@
 		});
 		
 		function logout() {
-			$.post('sys/logout.do', function(rt) {
+			$.post('logout', function(rt) {
 				if (rt.status) {
 					location = "login.html";
 				}

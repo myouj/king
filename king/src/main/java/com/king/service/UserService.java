@@ -15,8 +15,6 @@ import com.king.entity.User;
 public interface UserService {
 	
 	
-	public int insertUser(String name, Integer age);
-	
-	public PageInfo<User> findByName(String name);
+	public User getUser(String name, String password);
 
 }
