@@ -7,16 +7,14 @@
  */
 package com.king.mapper;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 
 import com.king.entity.User;
 
 public interface UserMapper {
 	
-	List<User> findByName(@Param("name") String name);
+	User getUser(@Param("name")String name,@Param("pass") String pass);
 	
-	int insert(@Param("name") String name, @Param("age") Integer age);
+	
 	
 }

@@ -11,7 +11,7 @@
 	function login() {
 		var data = getFormData("loginform"); //返回一个保存表单数据的json对象
 		//发送post请求
-		$.post('sys/login.do', data, function(rt) {
+		$.post('login', data, function(rt) {
 			if (rt.status) {
 				location = 'index.html';
 			} else {
@@ -36,11 +36,11 @@
 					<form class="signup_form_form" id="loginform" method="post">
 						<div class="form_row first_row">
 							<label for="signup_email">请输入用户名</label> <input type="text"
-								name="username" placeholder="请输入用户名" id="signup_name">
+								name="name" placeholder="请输入用户名" id="signup_name">
 						</div>
 						<div class="form_row">
 							<label for="signup_password">请输入密码</label> <input type="password"
-								name="userpass" placeholder="请输入密码" id="signup_password">
+								name="pass" placeholder="请输入密码" id="signup_password">
 						</div>
 					</form>
 				</div>
