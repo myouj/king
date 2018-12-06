@@ -15,7 +15,7 @@ var _menus={
 						{"icon":"icon-sys","menuid":"101","menuname":"监测数据查询","url":"listEnv.html"},
 						{"icon":"icon-sys","menuid":"102","menuname":"考勤管理","url":""},
 						{"icon":"icon-sys","menuid":"103","menuname":"设备管理","url":"listAsset.html"},
-						
+						{"icon":"icon-sys","menuid":"104","menuname":"学生管理","url":"listStudent.html"}
 					]
 			 	},
 			 	{
@@ -23,7 +23,8 @@ var _menus={
 					[
 						{"icon":"icon-sys","menuid":"201","menuname":"灯光控制","url":"listLightLog.html"},
 						{"icon":"icon-sys","menuid":"202","menuname":"空调控制","url":"listARLog.html"},
-						{"icon":"icon-sys","menuid":"202","menuname":"设备控制","url":"listAssertLog.html"}
+						{"icon":"icon-sys","menuid":"203","menuname":"设备控制","url":"listAssertLog.html"}
+						
 					]
 			 	}
 			 	

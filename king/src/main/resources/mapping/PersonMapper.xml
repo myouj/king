@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.king.mapper.PersonMapper">
+	
+	<!--List<Person> selectAllPerson();  -->
+	<select id="selectAllPerson" resultType="com.king.entity.Person">
+		select * from person
+	</select>
+	
+	<!--Person getPerson(Person person);  -->
+	<select id="getPerson" resultType="com.king.entity.Person">
+		select * from person where id=#{id}
+	</select>
+
+	<!-- void insertPerson(Person person); -->
+	<insert id="insertPerson">
+		insert into person values(#{id}, #{name}, #{number}, #{rfid}, #{status})
+	</insert>
+	
+	<!-- void updatePerson(Person person); -->
+	<update id="updatePerson">
+		update person 
+		set name=#{name}, number=#{number}, rfid=#{rfid}, status=#{status} 
+		where id=#{id}
+	</update>
+	
+	<!--void deletePerson(String id);  -->
+	<delete id="deletePerson">
+		delete from person where id=#{id}
+	</delete>
+
+</mapper>
