@@ -7,18 +7,18 @@
  */
 package com.king.controller;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.king.entity.User;
 import com.king.service.UserService;
 import com.king.utils.ResultTool;
@@ -29,44 +29,55 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-
 	@SuppressWarnings("rawtypes")
 	@PostMapping("/login")
-	public Map getUser(String name, String pass, HttpSession session) {
-		User user = userService.getUser(name, pass);
-		if (user != null) {
-			session.setAttribute("user", user);
-			return ResultTool.ajaxResult(true, "登陆成功");
+	public Map getUser(String name, String pass) {
+		
+		// 第一步：创建令牌
+		UsernamePasswordToken token = new UsernamePasswordToken(name, pass);
+		
+		// 第二步：获取Subject对象，该对象封装了一系列的操作
+		Subject subject = SecurityUtils.getSubject();
+		// 第三步：执行认证
+		try {
+			subject.login(token);
+			return ResultTool.ajaxResult(true, "登录成功！");
+		} catch (AuthenticationException e) {
+			e.printStackTrace();
 		}
-		return ResultTool.ajaxResult(false, "用户名或密码不正确");
+		return ResultTool.ajaxResult(false, "登陆失败！");
+
 	}
 
 	@SuppressWarnings("rawtypes")
 	@PostMapping("getName")
 	public Map getName(HttpSession session) {
-		User user = (User) session.getAttribute("user");
-		if(user == null) {
+		Subject subject = SecurityUtils.getSubject();
+		User user = (User) subject.getPrincipal();
+		if (user == null) {
 			return ResultTool.ajaxResult(false, "");
 		}
 		return ResultTool.ajaxResult(true, user.getName());
 	}
-	
-	
+
 	@SuppressWarnings("rawtypes")
 	@PostMapping("logout")
 	public Map logout(HttpSession session) {
-		session.invalidate();
+//		session.invalidate();
+		SecurityUtils.getSubject().logout();
 		return ResultTool.ajaxResult(true, "");
 	}
-	
+
 	@PostMapping("updatePassword")
 	public String updatePassword(String newPassword, HttpSession session) {
-		User user = (User) session.getAttribute("user");
+//		User user = (User) session.getAttribute("user");
+		Subject subject = SecurityUtils.getSubject();
+		User user = (User) subject.getPrincipal();
 		user.setPass(newPassword);
 		userService.updateUser(user);
-		
-		return user.getPass();	
-		
+
+		return user.getPass();
+
 	}
 
 }
