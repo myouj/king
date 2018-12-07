@@ -30,6 +30,7 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/images/**", "anon");
         filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/checkRem", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         //指定认证失败后跳转的页面

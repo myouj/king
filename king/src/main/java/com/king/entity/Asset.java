@@ -7,6 +7,19 @@ public class Asset {
 	private String rfid;
 	private Boolean status;
 
+	public Asset() {
+		super();
+	}
+
+	public Asset(String id, String name, String number, String rfid, Boolean status) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.number = number;
+		this.rfid = rfid;
+		this.status = status;
+	}
+
 	public String getId() {
 		return id;
 	}

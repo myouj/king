@@ -7,9 +7,6 @@
  */
 package com.king.service;
 
-import java.util.List;
-
-import com.github.pagehelper.PageInfo;
 import com.king.entity.User;
 
 public interface UserService {

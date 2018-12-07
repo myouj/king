@@ -12,6 +12,19 @@ public class Person {
 	private String rfid;
 	private boolean status;
 
+	public Person() {
+		super();
+	}
+
+	public Person(String id, String name, String number, String rfid, boolean status) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.number = number;
+		this.rfid = rfid;
+		this.status = status;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -44,7 +57,7 @@ public class Person {
 		this.rfid = rfid;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 

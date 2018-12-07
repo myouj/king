@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -59,6 +60,21 @@ public class AssetServiceImpl implements IAssetService {
 		Asset asset = new Asset();
 		asset.setId(id);
 		assetMapper.deleteAsset(asset);
+		
+	}
+
+	@Override
+	public List<Asset> getAllAsset() {
+		
+		return assetMapper.selectAllAsset();
+	}
+
+	@Override
+	@Transactional
+	public void insertAssets(List<Asset> assets) {
+		for (Asset asset : assets) {
+			insertAsset(asset);
+		}
 		
 	}
 

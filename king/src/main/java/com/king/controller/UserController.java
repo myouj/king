@@ -9,8 +9,11 @@ package com.king.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -31,7 +34,18 @@ public class UserController {
 
 	@SuppressWarnings("rawtypes")
 	@PostMapping("/login")
-	public Map getUser(String name, String pass) {
+	public Map getUser(String name, String pass, boolean rem, HttpServletResponse response) {
+		
+		if (rem) {
+			Cookie c = new Cookie("user", name + "#" + pass);
+			c.setMaxAge(60 * 60 * 24); //有效期为1天
+			response.addCookie(c);
+		} else {
+			Cookie c = new Cookie("user", "");
+			c.setMaxAge(0);
+			response.addCookie(c);
+		}
+
 		
 		// 第一步：创建令牌
 		UsernamePasswordToken token = new UsernamePasswordToken(name, pass);
@@ -78,6 +92,21 @@ public class UserController {
 
 		return user.getPass();
 
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@PostMapping("checkRem")
+	public Map checkRem(HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null) {
+			for (Cookie cookie : cookies) {
+				String cookieName = cookie.getName();
+				if("user".equals(cookieName)) {
+					return ResultTool.ajaxResult(true, cookie.getValue());
+				}
+			}
+		}
+		return ResultTool.ajaxResult(false, "");
 	}
 
 }

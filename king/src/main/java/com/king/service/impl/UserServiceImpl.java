@@ -1,13 +1,8 @@
 package com.king.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.king.entity.User;
 import com.king.mapper.UserMapper;
 import com.king.service.UserService;

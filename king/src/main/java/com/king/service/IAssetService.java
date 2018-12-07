@@ -1,5 +1,7 @@
 package com.king.service;
 
+import java.util.List;
+
 import com.king.entity.Asset;
 import com.king.utils.ResultInfo;
 
@@ -12,6 +14,8 @@ public interface IAssetService {
 	
 	ResultInfo selectAllAsset(int page, int rows);
 	
+	List<Asset> getAllAsset();
+	
 	void insertAsset(Asset asset);
 	
 	Asset getAsset(String id);
@@ -19,5 +23,7 @@ public interface IAssetService {
 	void updateAsset(Asset asset);
 	
 	void deleteAsset(String id);
+	
+	void insertAssets(List<Asset> assets);
 
 }

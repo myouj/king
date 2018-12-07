@@ -5,12 +5,16 @@ package com.king.service;
 * Describe:
 */
 
+import java.util.List;
+
 import com.king.entity.Person;
 import com.king.utils.ResultInfo;
 
 public interface IPersonService {
 	
 	ResultInfo selectAllPerson(int page, int rows);
+	
+	List<Person> getAllPerson();
 	
 	void insertPerson(Person person);
 	
@@ -19,5 +23,7 @@ public interface IPersonService {
 	void updatePerson(Person person);
 	
 	void deletePerson(String id);
+	
+	void insertPerson(List<Person> persons);
 
 }

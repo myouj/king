@@ -57,6 +57,20 @@ public class PersonServiceImpl implements IPersonService {
 		personMapper.deletePerson(id);
 		
 	}
+
+	@Override
+	public List<Person> getAllPerson() {
+		
+		return personMapper.selectAllPerson();
+	}
+
+	@Override
+	public void insertPerson(List<Person> persons) {
+		for (Person person : persons) {
+			insertPerson(person);
+			
+		}
+	}
 	
 	
 

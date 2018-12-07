@@ -10,147 +10,199 @@
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="adminjs/form.js"></script>
+<script type="text/javascript" src="adminjs/jquery.form.js"></script>
 <script>
-var url;
-$(function() {
-	$('#tt').datagrid(
-			{
-				url : 'selectAllPerson',//@todu
-				fit : false,
-				columns : [ [
-						{
-							field : 'id',
-							title : '编号',
-							width : 300,
-							align : 'left'
-						},
-						{
-							field : 'name',
-							title : '学生姓名',
-							width : 100,
-							align : 'left'
-						},
-						{
-							field : 'number',
-							title : '学号',
-							width : 100,
-							align : 'left'
-						},
-						{
-							field : 'rfid',
-							title : 'rfid',
-							width : 100,
-							align : 'left'
-						},
-						{
-							field : 'status',
-							title : '状态',
-							width : 100,
-							align : 'left',
-							formatter : function(value, row, index) {
-								return value ? "已签到".fontcolor("green")
-										: "未签到".fontcolor("red");
-							}
-						} ] ],
-				pagination : true, //是否显示分页栏，true就显示，默认为false，不显示
-				pageSize : '10', //默认每页显示5条记录
-				pageList : [ 10, 15, 20 ], //让用户选择每页显示的记录数
-				singleSelect : true,//true代表表格只能够单选
-				toolbar : [
-						{
-							iconCls : 'icon-add',
-							text : '添加',
-							handler : function() {
-								//打开对话框
-								$("#editWindow").dialog('open');
-								url = "insertPerson";//@todu
-							}
-						
-
-						},
-						{
-							iconCls : 'icon-edit',
-							text : '修改',
-							handler : function() {
-								//获取选中的行
-								var row = $('#tt').datagrid('getSelected');
-								if (row == null) {
-									$.messager.alert('提示', '请选择学生');
-								} else {
-									//弹出对话框
+	var url;
+	$(function() {
+		$('#tt').datagrid(
+				{
+					url : 'selectAllPerson',//@todu
+					fit : false,
+					columns : [ [
+							{
+								field : 'id',
+								title : '编号',
+								width : 300,
+								align : 'left'
+							},
+							{
+								field : 'name',
+								title : '学生姓名',
+								width : 100,
+								align : 'left'
+							},
+							{
+								field : 'number',
+								title : '学号',
+								width : 100,
+								align : 'left'
+							},
+							{
+								field : 'rfid',
+								title : 'rfid',
+								width : 100,
+								align : 'left'
+							},
+							{
+								field : 'status',
+								title : '状态',
+								width : 100,
+								align : 'left',
+								formatter : function(value, row, index) {
+									return value ? "已签到".fontcolor("green")
+											: "未签到".fontcolor("red");
+								}
+							} ] ],
+					pagination : true, //是否显示分页栏，true就显示，默认为false，不显示
+					pageSize : '10', //默认每页显示5条记录
+					pageList : [ 10, 15, 20 ], //让用户选择每页显示的记录数
+					singleSelect : true,//true代表表格只能够单选
+					toolbar : [
+							{
+								iconCls : 'icon-add',
+								text : '添加',
+								handler : function() {
+									//打开对话框
 									$("#editWindow").dialog('open');
-									//清空表单
-									$("#editForm").form('clear');
-									//加载表单数据
-									$("#editForm").form('load',
-											'getPerson?id=' + row.id);
-									url = "updatePerson";//@todu
+									url = "insertPerson";//@todu
 								}
 
-							}
-						}, 
-						{
-							iconCls : 'icon-remove',
-							text : '删除',
-							handler : function() {
-								var row = $('#tt').datagrid('getSelected'); //获取选中的行
-								if (row == null) {
-									$.messager.alert('提示', '请选择学生！');
-								} else {
-									$.post('deletePerson', {//@todu
-										id : row.id
-									}, function(rt) {
-										if (rt.status) {
-											//刷新表格数据
-											$("#tt").datagrid('reload');
-										}
-										$.messager.alert('提示', rt.message);
-									}, 'json');
-								}
-							}
-						} ]
+							},
+							{
+								iconCls : 'icon-edit',
+								text : '修改',
+								handler : function() {
+									//获取选中的行
+									var row = $('#tt').datagrid('getSelected');
+									if (row == null) {
+										$.messager.alert('提示', '请选择学生');
+									} else {
+										//弹出对话框
+										$("#editWindow").dialog('open');
+										//清空表单
+										$("#editForm").form('clear');
+										//加载表单数据
+										$("#editForm").form('load',
+												'getPerson?id=' + row.id);
+										url = "updatePerson";//@todu
+									}
 
-			});
-	$('#editWindow').dialog({
-		title : '编辑学生', //标题
-		width : 290, //宽度
-		height : 200, //高度
-		closed : true, //默认状态为关闭
-		cache : false, //是否缓存
-		modal : true, //是否显示遮挡层
-		closable : false,
-		buttons : [ {
-			text : '保存',
-			handler : function() {
-				var isValid = $("#editForm").form("validate");
-				if (!isValid) {
-					$.messager.alert("提示", "请输入有效的学生信息");
-					return;
-				}
-				var data = getFormData('editForm');
-				$.post(url, data, function(rt) {
-					if (rt.status) {
-						$("#editWindow").dialog('close');
-						$("#tt").datagrid('reload');
-						//清空表单
-						$("#editForm").form("clear");
+								}
+							}, {
+								iconCls : 'icon-remove',
+								text : '删除',
+								handler : function() {
+									var row = $('#tt').datagrid('getSelected'); //获取选中的行
+									if (row == null) {
+										$.messager.alert('提示', '请选择学生！');
+									} else {
+										$.post('deletePerson', {//@todu
+											id : row.id
+										}, function(rt) {
+											if (rt.status) {
+												//刷新表格数据
+												$("#tt").datagrid('reload');
+											}
+											$.messager.alert('提示', rt.message);
+										}, 'json');
+									}
+								}
+							}, {
+								iconCls : 'icon-print',
+								text : '导出Excel',
+								handler : function() {
+									window.open("exportStudent");
+								}
+							}, {
+								iconCls : 'icon-back',
+								text : '导入学生信息',
+								handler : function() {
+									$("#importWindow").dialog('open');
+								}
+							} ]
+
+				});
+		$('#editWindow').dialog({
+			title : '编辑学生', //标题
+			width : 290, //宽度
+			height : 200, //高度
+			closed : true, //默认状态为关闭
+			cache : false, //是否缓存
+			modal : true, //是否显示遮挡层
+			closable : false,
+			buttons : [ {
+				text : '保存',
+				handler : function() {
+					var isValid = $("#editForm").form("validate");
+					if (!isValid) {
+						$.messager.alert("提示", "请输入有效的学生信息");
+						return;
 					}
-					$.messager.alert('提示', rt.message);
-				}, 'json');
+					var data = getFormData('editForm');
+					$.post(url, data, function(rt) {
+						if (rt.status) {
+							$("#editWindow").dialog('close');
+							$("#tt").datagrid('reload');
+							//清空表单
+							$("#editForm").form("clear");
+						}
+						$.messager.alert('提示', rt.message);
+					}, 'json');
 
-			}
-		}, {
-			text : '取消',
-			handler : function() {
-				//关闭对话框 
-				$('#editWindow').dialog('close');
-				//清空表单数据
-				$("#editForm").form('clear');
+				}
+			}, {
+				text : '取消',
+				handler : function() {
+					//关闭对话框 
+					$('#editWindow').dialog('close');
+					//清空表单数据
+					$("#editForm").form('clear');
 
-			}
-		} ]
+				}
+			} ]
+		});
+		//初始化对话框
+		$('#importWindow').dialog({
+			title : '导入', //标题
+			width : 350, //宽度
+			height : 130, //高度
+			closed : true, //默认状态为关闭
+			cache : false, //是否缓存
+			modal : true, //是否显示遮挡层
+			buttons : [ {
+				text : '上传',
+				handler : function() {
+					//获取表单验证的结果
+					if ($("#file").val() == '') {
+						$.messager.alert("提示", "请选择上传文件");
+						return;
+					}
+					//初始化文件上传表单
+					$("#importForm").ajaxSubmit({
+						url : "importStudent",
+						type : "post",
+						dataType : "json",
+						async : true,
+						success : function(rt) {
+							if (rt.status) {
+								$("#importWindow").dialog('close'); //关闭对话框
+								$("#importForm").form("clear"); //清空表单
+								$("#tt").datagrid("load"); //刷新表格
+							}
+							$.messager.alert("提示", rt.message);
+						}
+					});
+
+				}
+			}, {
+				text : '取消',
+				handler : function() {
+					$("#editWindow").dialog('close'); //关闭对话框
+					$("#editForm").form("clear"); //清空表单
+				}
+			} ]
+		});
 	});
-});
 </script>
 </head>
 <body>
@@ -180,6 +232,16 @@ $(function() {
 							<option value="1">已签到</option>
 							<option value="0">未签到</option>
 					</select></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="importWindow">
+		<form id="importForm" enctype="multipart/form-data">
+			<table style="margin: 10px;">
+				<tr>
+					<td>选择：</td>
+					<td><input type="file" id="file" name="file" /></td>
 				</tr>
 			</table>
 		</form>
